@@ -110,18 +110,19 @@ button.active {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
     gap: 0.5rem;
     background: var(--grid-bg);
     padding: 1rem;
     border-radius: 0.75rem;
     border: 1px solid var(--cell-border);
+    max-width: 90vw;
+    max-height: 70vh;
+    overflow: auto;
 }
 
 .cell {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background: var(--cell-bg);
     border-radius: 0.5rem;
     display: flex;

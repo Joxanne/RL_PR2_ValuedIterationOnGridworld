@@ -19,6 +19,11 @@
         </header>
 
         <div class="controls">
+            <div class="size-selector" style="display: flex; align-items: center; gap: 0.5rem; background: var(--grid-bg); padding: 0.5rem 1rem; border-radius: 0.5rem;">
+                <label for="gridSize" style="font-weight: 600; font-size: 0.9rem;">Grid Size:</label>
+                <input type="number" id="gridSize" value="5" min="3" max="25" style="width: 60px; border-radius: 0.25rem; border: 1px solid var(--cell-border); background: var(--cell-bg); color: var(--text-primary); padding: 0.4rem; font-weight: bold; text-align: center;">
+                <button id="updateSizeBtn" style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Update</button>
+            </div>
             <div class="mode-selector">
                 <button class="mode-btn active" data-mode="obstacle">Toggle Obstacles</button>
                 <button class="mode-btn" data-mode="start">Set Start</button>

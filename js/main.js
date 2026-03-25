@@ -1,4 +1,4 @@
-const GRID_SIZE = 5;
+let GRID_SIZE = 5;
 let startCell = [0, 0];
 let endCell = [4, 4];
 let obstacles = [[1, 1], [2, 2], [3, 3]];
@@ -21,6 +21,8 @@ const solveBtn = document.getElementById('solveBtn');
 const resetBtn = document.getElementById('resetBtn');
 const showValuesCb = document.getElementById('showValues');
 const showPolicyCb = document.getElementById('showPolicy');
+const gridSizeInput = document.getElementById('gridSize');
+const updateSizeBtn = document.getElementById('updateSizeBtn');
 
 let currentValues = null;
 let currentPolicy = null;
@@ -114,6 +116,8 @@ function valueIteration() {
 }
 
 function initGrid() {
+    gridEl.style.gridTemplateColumns = `repeat(${GRID_SIZE}, 1fr)`;
+    gridEl.style.gridTemplateRows = `repeat(${GRID_SIZE}, 1fr)`;
     gridEl.innerHTML = '';
     for (let r = 0; r < GRID_SIZE; r++) {
         for (let c = 0; c < GRID_SIZE; c++) {
@@ -249,12 +253,28 @@ showPolicyCb.addEventListener('change', updateGridVisuals);
 
 resetBtn.addEventListener('click', () => {
     startCell = [0, 0];
-    endCell = [4, 4];
-    obstacles = [[1, 1], [2, 2], [3, 3]];
+    endCell = [GRID_SIZE - 1, GRID_SIZE - 1];
+    obstacles = [];
     currentValues = null;
     currentPolicy = null;
     currentPath = null;
     updateGridVisuals();
+});
+
+updateSizeBtn.addEventListener('click', () => {
+    let newSize = parseInt(gridSizeInput.value);
+    if (isNaN(newSize) || newSize < 3 || newSize > 25) {
+        alert("Please enter a valid size between 3 and 25.");
+        return;
+    }
+    GRID_SIZE = newSize;
+    startCell = [0, 0];
+    endCell = [GRID_SIZE - 1, GRID_SIZE - 1];
+    obstacles = [];
+    currentValues = null;
+    currentPolicy = null;
+    currentPath = null;
+    initGrid();
 });
 
 solveBtn.addEventListener('click', async () => {
